@@ -254,6 +254,29 @@
       border-color: #d982a1;
     }
 
+
+    .optional-field {
+      margin-top: 18px;
+    }
+
+    .optional-field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #786975;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .optional-field label span {
+      color: #a38f9e;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+
+    .extra-textarea {
+      min-height: 95px;
+    }
+
     .navigation {
       display: flex;
       gap: 10px;
@@ -338,8 +361,8 @@
 
       <div class="progress-container" id="progressContainer">
         <div class="progress-info">
-          <span id="questionNumber">Question 1 of 12</span>
-          <span id="progressPercent">8%</span>
+          <span id="questionNumber">Question 1 of 10</span>
+          <span id="progressPercent">10%</span>
         </div>
 
         <div class="progress-bar">
@@ -370,563 +393,655 @@
 
       </section>
 
+
+      <!-- QUESTION 1 -->
       <section class="screen question" data-question="1">
-
-        <h2>What makes you feel cared for the most...</h2>
-
-
-        <div class="options">
-
-          <button class="option" data-value="Words, compliments"
-                  onclick="selectOption(this)">
-
-            Words, compliments
-          </button>
-
-          <button class="option" data-value="Gifts"
-                  onclick="selectOption(this)">
-            Gifts
-          </button>
-
-          <button class="option" data-value="Quality time"
-                  onclick="selectOption(this)">
-            Quality time
-          </button>
-
-        </div>
+        <h2>What are the little things that make you feel genuinely appreciated?</h2>
+        <p class="subtitle">
+          Tell me in your own words — it can be something small, thoughtful, or meaningful.
+        </p>
+        <textarea id="q1" placeholder="Tell me the little things that make you feel genuinely appreciated..."></textarea>
 
         <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">
-            ← Back
-          </button>
-
-          <button class="primary-btn" onclick="nextQuestion()">
-            Next →
-          </button>
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 2 -->
       <section class="screen question" data-question="2">
-
-        <h2>What kind of jewelry do you love most? 💎</h2>
-
+        <h2>What’s something you wish people would do for you without you having to ask? 🥹</h2>
         <p class="subtitle">
-          Pick your ideal.
+          It could be something small or something really meaningful.
         </p>
-
-        <div class="options">
-
-          <button class="option" data-value="Necklaces"
-                  onclick="selectOption(this)">
-            Necklaces
-          </button>
-
-          <button class="option" data-value="Bracelets"
-                  onclick="selectOption(this)">
-            Bracelets
-          </button>
-
-          <button class="option" data-value="Rings"
-                  onclick="selectOption(this)">
-            Rings
-          </button>
-
-          <button class="option" data-value="Earrings"
-                  onclick="selectOption(this)">
-            Earrings
-          </button>
-
-          <button class="option" data-value="Something more specific"
-                  onclick="selectOption(this)">
-            Something more specific
-          </button>
-
+        <textarea id="q2" placeholder="For example: checking in on me, remembering little things, giving me affection, helping when I'm stressed, or simply being there..."></textarea>
+        <div class="optional-field">
+          <label for="q2-extra">Don't hold back Lindelwe! Tell me the truth. This is a safe space <span>Optional</span></label>
+          <textarea id="q2-extra" class="extra-textarea" placeholder="Anything else you'd like to add..."></textarea>
         </div>
-
         <div class="navigation">
           <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
           <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 3 -->
       <section class="screen question" data-question="3">
-
-        <h2>Do you like handwritten notes? 💌</h2>
-
-        <div class="options">
-
-          <button class="option" data-value="I love them."
-                  onclick="selectOption(this)"> I love them.</button>
-
-          <button class="option" data-value="Depends..."
-                  onclick="selectOption(this)"> Depends...</button>
-
-          <button class="option" data-value="No"
-                  onclick="selectOption(this)">No</button>
-
+        <h2>What’s something you could talk about for hours and never get bored of? 👀</h2>
+        <p class="subtitle">
+          A hobby, a person, a dream, music, movies, life, a random obsession... anything.
+        </p>
+        <textarea id="q3" placeholder="Tell me something you could happily talk about forever..."></textarea>
+        <div class="optional-field">
+          <label for="q3-extra">Don't deprive me of intel? <span>Optional</span></label>
+          <textarea id="q3-extra" class="extra-textarea" placeholder="You can add more if you feel like it..."></textarea>
         </div>
-
         <div class="navigation">
           <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
           <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 4 -->
       <section class="screen question" data-question="4">
-
-        <h2>When you’re having a bad day, how do you want someone who cares about you to treat you? 🫶</h2>
-
-
-        <div class="options">
-
-          <button class="option" data-value="Comfort"
-                  onclick="selectOption(this)">Comfort</button>
-
-          <button class="option" data-value="Advice"
-                  onclick="selectOption(this)">Advice</button>
-
-          <button class="option" data-value="Advice"
-                  onclick="selectOption(this)">Space</button>
-
-          <button class="option" data-value="Have someone there"
-                  onclick="selectOption(this)">Have someone there</button>
-
-        </div>
-
+        <h2>What’s one dream or goal you really want to accomplish in your life, and why does it mean so much to you?</h2>
+        <p class="subtitle">
+          I want to know about the dream that genuinely matters to you — the one you'd be proud to make a reality.
+        </p>
+        <textarea id="q4" placeholder="Tell me about a dream or goal that means a lot to you, and why..."></textarea>
         <div class="navigation">
           <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
           <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 5 -->
       <section class="screen question" data-question="5">
-
-        <h2>Which color feels the most "you"? 🎨</h2>
-
-                <div class="options">
-
-          <button class="option" data-value="Black"
-                  onclick="selectOption(this)">🖤 Black</button>
-
-          <button class="option" data-value="White"
-                  onclick="selectOption(this)">🤍 White</button>
-
-          <button class="option" data-value="Pink"
-                  onclick="selectOption(this)">🩷 Pink</button>
-
-          <button class="option" data-value="Blue"
-                  onclick="selectOption(this)">💙 Blue</button>
-
-          <button class="option" data-value="Purple"
-                  onclick="selectOption(this)">💜 Purple</button>
-          <button class="option" data-value="Purple"
-          onclick="selectOption(this)">None of the above</button>
-
+        <h2>What makes you feel like someone is genuinely listening to you?</h2>
+        <p class="subtitle">
+          What makes you feel heard and understood? Pick what matters to you most.
+        </p>
+        <div class="options">
+          <button class="option" data-value="They remember little things I say" onclick="selectOption(this)">🧠 They remember the little things I say</button>
+          <button class="option" data-value="They ask follow-up questions" onclick="selectOption(this)">💬 They ask follow-up questions</button>
+          <button class="option" data-value="They give me their full attention" onclick="selectOption(this)">👀 They give me their full attention</button>
+          <button class="option" data-value="They listen without judging" onclick="selectOption(this)">🤍 They listen without judging</button>
+          <button class="option" data-value="They understand without me explaining everything" onclick="selectOption(this)">🥹 They understand without me explaining everything</button>
+          <button class="option" data-value="All of the above" onclick="selectOption(this)">✨ All of the above</button>
         </div>
-
+        <div class="optional-field">
+          <label for="q5-extra">Don't be shy. Tell me more about what makes you feel heard? <span>Optional</span></label>
+          <textarea id="q5-extra" class="extra-textarea" placeholder="Anything else that helps you feel genuinely listened to..."></textarea>
+        </div>
         <div class="navigation">
           <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
           <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 6 -->
       <section class="screen question" data-question="6">
-
-        <h2>What’s something you’ve always wanted someone to do for you, but nobody has really thought of doing? ✨</h2>
-
-        <textarea id="q6" placeholder="Tell me something you've always wanted someone to do for you..."></textarea>
-
+        <h2>When you’re angry or overwhelmed, what do you usually need from someone who cares about you? 💭</h2>
+        <div class="options">
+          <button class="option" data-value="Talk it out immediately" onclick="selectOption(this)">💬 Talk it out with me immediately</button>
+          <button class="option" data-value="Give me some space first" onclick="selectOption(this)">🌿 Give me some space first</button>
+          <button class="option" data-value="Comfort me" onclick="selectOption(this)">🫂 Comfort me</button>
+          <button class="option" data-value="Distract me" onclick="selectOption(this)">😂 Distract me</button>
+          <button class="option" data-value="Just stay by my side" onclick="selectOption(this)">🤍 Just stay by my side</button>
+          <button class="option" data-value="Something else" onclick="selectOption(this)">✨ Something else</button>
+        </div>
+        <div class="optional-field">
+          <label for="q6-extra">If you want, tell me more about what helps. <span>Optional</span></label>
+          <textarea id="q6-extra" class="extra-textarea" placeholder="Anything else you need when you're angry, overwhelmed, or having a difficult day..."></textarea>
+        </div>
         <div class="navigation">
           <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
           <button class="primary-btn" onclick="nextQuestion()">Next →</button>
         </div>
-
       </section>
 
+      <!-- QUESTION 7 -->
       <section class="screen question" data-question="7">
+        <h2>When something is bothering you, what are you usually like?</h2>
+        <p class="subtitle">
+          And what makes it easier for you to open up?
+        </p>
+        <div class="options">
+          <button class="option" data-value="I talk about it" onclick="selectOption(this)">💬 I usually talk about it</button>
+          <button class="option" data-value="I keep it to myself" onclick="selectOption(this)">🤐 I usually keep it to myself</button>
+          <button class="option" data-value="I need someone to ask me" onclick="selectOption(this)">🫶 I need someone to ask me first</button>
+          <button class="option" data-value="I need time before opening up" onclick="selectOption(this)">🌿 I need some time before I open up</button>
+        </div>
+        <textarea id="q7" placeholder="What makes you feel comfortable enough to open up?"></textarea>
+        <div class="optional-field">
+          <label for="q7-extra">Anything else you want to explain? <span>Optional</span></label>
+          <textarea id="q7-extra" class="extra-textarea" placeholder="You can add anything else that might help me understand..."></textarea>
+        </div>
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+      </section>
 
-        <h2>What kind of gift makes you happiest? 🎁</h2>
+      <!-- QUESTION 8 -->
+      <section class="screen question" data-question="8">
+        <h2>What’s your favorite way for someone to show you that they genuinely care about you?</h2>
+        <p class="subtitle">
+          Pick the one that speaks to you the most.
+        </p>
+        <div class="options">
+          <button class="option" data-value="Words" onclick="selectOption(this)">💬 Words</button>
+          <button class="option" data-value="Actions" onclick="selectOption(this)">🫶 Actions</button>
+          <button class="option" data-value="Quality time" onclick="selectOption(this)">⏰ Quality time</button>
+          <button class="option" data-value="Thoughtful gestures" onclick="selectOption(this)">✨ Thoughtful gestures</button>
+          <button class="option" data-value="Checking in" onclick="selectOption(this)">💌 Checking in on me</button>
+          <button class="option" data-value="Helping me" onclick="selectOption(this)">🤍 Helping me when I need it</button>
+        </div>
+        <div class="optional-field">
+          <label for="q8-extra">Want to tell me more about your choice? Don't hold back <span>Optional</span></label>
+          <textarea id="q8-extra" class="extra-textarea" placeholder="Anything else that makes you feel genuinely cared for..."></textarea>
+        </div>
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+      </section>
+
+      <!-- QUESTION 9 -->
+      <section class="screen question" data-question="9">
+        <h2>What’s something someone can do that makes you feel deeply cared for, without having to say it out loud? 🥹</h2>
+        <p class="subtitle">
+          Think about the little things that can make you feel cared for without needing to be said.
+        </p>
+        <textarea id="q9" placeholder="A thoughtful action, remembering the little things, being there when you need them, spending time with you..."></textarea>
+        <div class="optional-field">
+          <label for="q9-extra">Anything else you'd like to add? Just imagine you were writing a journal :) <span>Optional</span></label>
+          <textarea id="q9-extra" class="extra-textarea" placeholder="Tell me more if there's something specific that really matters to you..."></textarea>
+        </div>
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+      </section>
+
+      <!-- QUESTION 10 -->
+      <section class="screen question" data-question="10">
+        <h2>How do you feel about random “I miss you” or “I was thinking about you” texts?</h2>
+        <p class="subtitle">
+          Be honest. I promise I'm taking notes. 😂
+        </p>
+        <div class="options">
+          <button class="option" data-value="I love them" onclick="selectOption(this)">🥹 I love them</button>
+          <button class="option" data-value="Cute occasionally" onclick="selectOption(this)">😌 They're cute, especially occasionally</button>
+          <button class="option" data-value="Depends on the person" onclick="selectOption(this)">👀 Depends on the person</button>
+          <button class="option" data-value="Not really into them" onclick="selectOption(this)">😅 I'm not really into those kinds of texts</button>
+        </div>
+        <div class="optional-field">
+          <label for="q10-extra">Are you sure, the smile says something else? <span>Optional</span></label>
+          <textarea id="q10-extra" class="extra-textarea" placeholder="For example, when you like getting them, how often, or what makes them feel nice..."></textarea>
+        </div>
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="finishQuiz()">Submit my answers 💌</button>
+        </div>
+      </section>
+
+
+      </div><!-- /quizContent -->
+
+      <section class="success-message" id="success">
+        <div class="final-heart">💗</div>
+
+        <h1>Perfect. Thank you! ✨</h1>
 
         <p class="subtitle">
-          Be honest.
+          Your answers have been safely recorded.
+          <br><br>
+          Thank you for your time, I just want to treat you better :)
         </p>
 
-        <div class="options">
-
-          <button class="option" data-value="Jewelry"
-                  onclick="selectOption(this)">💍 Jewelry / accessories</button>
-
-          <button class="option" data-value="Fashion"
-                  onclick="selectOption(this)">👗 Clothes / fashion</button>
-
-          <button class="option" data-value="Cute"
-                  onclick="selectOption(this)">🧸 Something cute</button>
-
-          <button class="option" data-value="Books"
-                  onclick="selectOption(this)">📚 Books</button>
-
-          <button class="option" data-value="Beauty"
-                  onclick="selectOption(this)">💄 Beauty / self-care</button>
-
-          <button class="option" data-value="Sentimental"
-                  onclick="selectOption(this)">💌 Something sentimental</button>
-
-          <button class="option" data-value="Surprise"
-                  onclick="selectOption(this)">🎁 Surprise me!</button>
-
+        <div class="summary-box">
+          <strong>Mission status:</strong><br>
+          Part one finished. Stay tuned 🕵️‍♂️
         </div>
 
-        <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
-        </div>
-
+        <p class="small-note">
+          You may now continue with your day as if nothing happened. 😂
+        </p>
       </section>
 
-      <section class="screen question" data-question="8">
+    </main>
 
-        <h2>What are some things you absolutely don’t like or that can easily hurt your feelings? 💭</h2>
-        <textarea
-          id="q8"
-          placeholder="Tell me what you don't like or what can easily hurt your feelings..."
-        ></textarea>
+    <script>
+  const SUPABASE_URL = "";
+  const SUPABASE_PUBLISHABLE_KEY = "";
 
-<div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
-        </div>
+  let supabaseClient = null;
 
-      </section>
+  if (SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY && window.supabase) {
+    supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+  }
 
-      <section class="screen question" data-question="9">
+  const totalQuestions = 10;
+  const STORAGE_KEY = "birthdayQuizAnswers";
+  const PROGRESS_KEY = "birthdayQuizProgress";
 
-        <h2>If someone wanted to take really good care of you, what would you want them to know about you? </h2>
+  let currentQuestion = 0;
+  const answers = {};
 
+  function saveAnswers() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+      localStorage.setItem(PROGRESS_KEY, String(currentQuestion));
+      showSavedIndicator();
+    } catch (error) {
+      console.error("Could not save quiz progress:", error);
+    }
+  }
 
-        <textarea id="q9" placeholder="Tell me what you'd want me to know about you so I can take good care of you..."></textarea>
+  function loadSavedQuiz() {
+    try {
+      const savedAnswers = localStorage.getItem(STORAGE_KEY);
+      const savedProgress = localStorage.getItem(PROGRESS_KEY);
 
-        <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
-        </div>
+      if (savedAnswers) {
+        const parsedAnswers = JSON.parse(savedAnswers);
+        Object.keys(parsedAnswers).forEach(key => {
+          answers[key] = parsedAnswers[key];
+        });
+      }
 
-      </section>
+      if (savedProgress !== null) {
+        const parsedProgress = parseInt(savedProgress, 10);
+        currentQuestion = Number.isNaN(parsedProgress) ? 0 : parsedProgress;
+      }
 
-      <section class="screen question" data-question="10">
+      return Object.keys(answers).length > 0 || currentQuestion > 0;
+    } catch (error) {
+      console.error("Could not load saved quiz:", error);
+      currentQuestion = 0;
+      return false;
+    }
+  }
 
-        <h2>Anything I do that you'd like me to do more of or less of? (If Any)</h2>
+  function showSavedIndicator() {
+    const indicator = document.getElementById("saveIndicator");
+    if (!indicator) return;
 
-        <textarea id="q10" placeholder="Tell me anything you'd like me to do more of, if any..."></textarea>
+    indicator.textContent = "Saved ✓";
+    indicator.style.opacity = "1";
+    clearTimeout(window.saveIndicatorTimeout);
 
-        <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
-        </div>
+    window.saveIndicatorTimeout = setTimeout(() => {
+      indicator.style.opacity = "0";
+    }, 1500);
+  }
 
-      </section>
+  // Supports both the new autosave format and answers saved by the previous version.
+  function getAnswerData(questionNumber) {
+    const saved = answers[questionNumber];
 
-      <section class="screen question" data-question="11">
+    if (!saved) return { answer: "", extra: "" };
 
-        <h2>How much do you like surprises? 🎲</h2>
-
-        <div class="options">
-
-          <button class="option" data-value="10/10"
-                  onclick="selectOption(this)">🥹 10/10 — SURPRISE ME</button>
-
-          <button class="option" data-value="8/10"
-                  onclick="selectOption(this)">😍 8/10</button>
-
-          <button class="option" data-value="5/10"
-                  onclick="selectOption(this)">🙂 5/10</button>
-
-          <button class="option" data-value="2/10"
-                  onclick="selectOption(this)">😅 2/10 — I need hints</button>
-
-          <button class="option" data-value="No surprises"
-                  onclick="selectOption(this)">🚫 Please don't surprise me</button>
-
-        </div>
-
-        <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
-        </div>
-
-      </section>
-
-      <section class="screen question" data-question="12">
-
-        <h2>What's something you REALLY don't like? Anything 🚫</h2>
-
-        <textarea
-          id="q12"
-          placeholder="Please save me from accidentally choosing the wrong thing 😂"
-        ></textarea>
-
-        <div class="navigation">
-          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
-
-          <button class="primary-btn" onclick="finishQuiz()">
-            Submit my answers 💌
-          </button>
-        </div>
-
-      </section>
-
-    </div>
-
-    <section class="success-message" id="success">
-
-      <div class="final-heart">💗</div>
-
-      <h1>Perfect. Thank you! ✨</h1>
-
-      <p class="subtitle">
-        Your answers have been safely recorded.
-        <br><br>
-        Thank you for your time, I just want to treat you better :)
-      </p>
-
-      <div class="summary-box">
-        <strong>Mission status:</strong><br>
-        Part one finished. Stay tuned 🕵️‍♂️
-      </div>
-
-      <p class="small-note">
-        You may now continue with your day as if nothing happened. 😂
-      </p>
-
-    </section>
-
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script>
-    const SUPABASE_URL = "https://ireszkilzuwybtbitdty.supabase.co";
-    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_7q-p3xgS5-UEr1Z-gM8ayw_oQGikmel";
-
-    let supabaseClient = null;
-
-    if (SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY && window.supabase) {
-      supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-      );
+    if (typeof saved === "object") {
+      return {
+        answer: saved.answer || "",
+        extra: saved.extra || ""
+      };
     }
 
-    const totalQuestions = 12;
-    let currentQuestion = 0;
-    const answers = {};
-
-    function startQuiz() {
-      document.getElementById("intro").classList.remove("active");
-      document.querySelector('.question[data-question="1"]').classList.add("active");
-      document.getElementById("progressContainer").style.display = "block";
-
-      currentQuestion = 1;
-      updateProgress();
+    if (questionNumber === "7" && typeof saved === "string" && saved.includes(" | ")) {
+      const parts = saved.split(" | ");
+      return {
+        answer: parts.shift(),
+        extra: parts.join(" | ")
+      };
     }
 
-    function selectOption(button) {
-      const question = button.closest(".question");
+    return { answer: String(saved), extra: "" };
+  }
+
+  function setAnswerData(questionNumber, answer, extra = "") {
+    answers[questionNumber] = {
+      answer: answer || "",
+      extra: extra || ""
+    };
+    saveAnswers();
+  }
+
+  function syncQuestionAnswer(question) {
+    if (!question) return;
+
+    const questionNumber = question.dataset.question;
+    const selectedOption = question.querySelector(".option.selected");
+    const primaryTextarea = question.querySelector("textarea:not(.extra-textarea)");
+    const extraTextarea = question.querySelector(".extra-textarea");
+
+    const answer = selectedOption
+      ? selectedOption.dataset.value
+      : primaryTextarea
+        ? primaryTextarea.value.trim()
+        : "";
+
+    const extra = extraTextarea ? extraTextarea.value.trim() : "";
+
+    setAnswerData(questionNumber, answer, extra);
+  }
+
+  function restoreAnswers() {
+    document.querySelectorAll(".question").forEach(question => {
       const questionNumber = question.dataset.question;
+      const data = getAnswerData(questionNumber);
+      const options = question.querySelectorAll(".option");
 
-      question.querySelectorAll(".option").forEach(option => {
-        option.classList.remove("selected");
+      options.forEach(option => {
+        option.classList.toggle("selected", option.dataset.value === data.answer);
       });
 
-      button.classList.add("selected");
-      answers[questionNumber] = button.dataset.value;
+      const primaryTextarea = question.querySelector("textarea:not(.extra-textarea)");
+      if (primaryTextarea) primaryTextarea.value = data.answer || "";
+
+      const extraTextarea = question.querySelector(".extra-textarea");
+      if (extraTextarea) extraTextarea.value = data.extra || "";
+    });
+  }
+
+  function startQuiz() {
+    document.getElementById("intro").classList.remove("active");
+
+    if (currentQuestion < 1 || currentQuestion > totalQuestions) {
+      currentQuestion = 1;
     }
 
-    function validateCurrentQuestion() {
-      const current = document.querySelector(
-        `.question[data-question="${currentQuestion}"]`
-      );
+    showQuestion(currentQuestion);
+    document.getElementById("progressContainer").style.display = "block";
+    updateProgress();
+    saveAnswers();
+  }
 
-      if (!current) return false;
+  function showQuestion(questionNumber) {
+    document.querySelectorAll(".question").forEach(question => {
+      question.classList.remove("active");
+    });
 
-      const optionContainer = current.querySelector(".options");
+    const question = document.querySelector(
+      `.question[data-question="${questionNumber}"]`
+    );
 
-      if (optionContainer) {
-        if (!answers[currentQuestion]) {
-          alert("Pick one first 😌");
-          return false;
-        }
+    if (question) question.classList.add("active");
+  }
 
-        return true;
+  function selectOption(button) {
+    const question = button.closest(".question");
+    if (!question) return;
+
+    question.querySelectorAll(".option").forEach(option => {
+      option.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+    syncQuestionAnswer(question);
+  }
+
+  function setupTextareaAutosave() {
+    document.querySelectorAll("textarea").forEach(textarea => {
+      textarea.addEventListener("input", function () {
+        const question = this.closest(".question");
+        if (!question) return;
+        syncQuestionAnswer(question);
+      });
+    });
+  }
+
+  function validateCurrentQuestion() {
+    const current = document.querySelector(
+      `.question[data-question="${currentQuestion}"]`
+    );
+
+    if (!current) return false;
+
+    const optionContainer = current.querySelector(".options");
+    const primaryTextarea = current.querySelector("textarea:not(.extra-textarea)");
+
+    if (optionContainer) {
+      if (!current.querySelector(".option.selected")) {
+        alert("Pick one first 😌");
+        return false;
       }
 
-      const textarea = current.querySelector("textarea");
-
-      if (textarea) {
-        const answer = textarea.value.trim();
-
-        if (!answer) {
-          alert("Tell me something! 👀");
-          textarea.focus();
-          return false;
-        }
-
-        answers[currentQuestion] = answer;
-      }
-
+      syncQuestionAnswer(current);
       return true;
     }
 
-    function nextQuestion() {
-      if (!validateCurrentQuestion()) return;
+    if (primaryTextarea) {
+      if (!primaryTextarea.value.trim()) {
+        alert("Tell me something! 👀");
+        primaryTextarea.focus();
+        return false;
+      }
 
-      const current = document.querySelector(
-        `.question[data-question="${currentQuestion}"]`
-      );
+      syncQuestionAnswer(current);
+      return true;
+    }
 
+    return true;
+  }
+
+  function nextQuestion() {
+    if (!validateCurrentQuestion()) return;
+
+    const current = document.querySelector(
+      `.question[data-question="${currentQuestion}"]`
+    );
+
+    if (current) {
+      syncQuestionAnswer(current);
       current.classList.remove("active");
-      currentQuestion++;
-
-      const next = document.querySelector(
-        `.question[data-question="${currentQuestion}"]`
-      );
-
-      if (next) {
-        next.classList.add("active");
-      }
-
-      updateProgress();
     }
 
-    function previousQuestion() {
-      const current = document.querySelector(
-        `.question[data-question="${currentQuestion}"]`
-      );
+    currentQuestion++;
 
-      if (current) {
-        current.classList.remove("active");
-      }
+    const next = document.querySelector(
+      `.question[data-question="${currentQuestion}"]`
+    );
 
-      currentQuestion--;
+    if (next) next.classList.add("active");
 
-      if (currentQuestion <= 0) {
-        currentQuestion = 0;
-        document.getElementById("intro").classList.add("active");
-        document.getElementById("progressContainer").style.display = "none";
-        return;
-      }
+    updateProgress();
+    saveAnswers();
+  }
 
-      const previous = document.querySelector(
-        `.question[data-question="${currentQuestion}"]`
-      );
+  function previousQuestion() {
+    const current = document.querySelector(
+      `.question[data-question="${currentQuestion}"]`
+    );
 
-      if (previous) {
-        previous.classList.add("active");
-
-        const textarea = previous.querySelector("textarea");
-        if (textarea && answers[currentQuestion]) {
-          textarea.value = answers[currentQuestion];
-        }
-
-        const selectedValue = answers[currentQuestion];
-        if (selectedValue) {
-          previous.querySelectorAll(".option").forEach(option => {
-            option.classList.toggle(
-              "selected",
-              option.dataset.value === selectedValue
-            );
-          });
-        }
-      }
-
-      updateProgress();
+    if (current) {
+      syncQuestionAnswer(current);
+      current.classList.remove("active");
     }
 
-    function updateProgress() {
-      if (currentQuestion === 0) return;
+    currentQuestion--;
 
-      const percentage = Math.round(
-        (currentQuestion / totalQuestions) * 100
-      );
-
-      document.getElementById("progress").style.width = percentage + "%";
-      document.getElementById("progressPercent").textContent = percentage + "%";
-      document.getElementById("questionNumber").textContent =
-        `Question ${currentQuestion} of ${totalQuestions}`;
+    if (currentQuestion <= 0) {
+      currentQuestion = 0;
+      document.getElementById("intro").classList.add("active");
+      document.getElementById("progressContainer").style.display = "none";
+      saveAnswers();
+      return;
     }
 
-    async function finishQuiz() {
-      if (!validateCurrentQuestion()) return;
+    restoreAnswers();
 
-      if (!supabaseClient) {
-        alert(
-          "Supabase is not configured yet. Add your Supabase URL and publishable key to the HTML file, then try again. ❤️"
-        );
-        return;
-      }
+    const previous = document.querySelector(
+      `.question[data-question="${currentQuestion}"]`
+    );
 
-      const submitButton = document.querySelector(
-        '.question[data-question="12"] .primary-btn'
+    if (previous) previous.classList.add("active");
+
+    updateProgress();
+    saveAnswers();
+  }
+
+  function updateProgress() {
+    if (currentQuestion === 0) return;
+
+    const percentage = Math.round(
+      (currentQuestion / totalQuestions) * 100
+    );
+
+    document.getElementById("progress").style.width = percentage + "%";
+    document.getElementById("progressPercent").textContent = percentage + "%";
+    document.getElementById("questionNumber").textContent =
+      `Question ${currentQuestion} of ${totalQuestions}`;
+  }
+
+  async function finishQuiz() {
+    if (!validateCurrentQuestion()) return;
+
+    const honestConfirmation = confirm(
+      "Wait... one last thing 😂\n\n" +
+      "Have you honestly answered all the questions? 👀\n\n" +
+      "You STILL have time to go back and change anything... but once you click OK, your answers are going straight to the vault. 💌\n\n" +
+      "Be honest. I won't judge. 😌"
+    );
+
+    if (!honestConfirmation) return;
+
+    if (!supabaseClient) {
+      alert(
+        "Supabase is not configured yet. Add your Supabase URL and publishable key to the HTML file, then try again. ❤️"
       );
+      return;
+    }
 
-      submitButton.disabled = true;
-      submitButton.textContent = "Saving your answers... 💌";
+    // Capture every question before submitting, including optional text.
+    document.querySelectorAll(".question").forEach(question => {
+      const number = question.dataset.question;
+      const selectedOption = question.querySelector(".option.selected");
+      const primaryTextarea = question.querySelector("textarea:not(.extra-textarea)");
+      const extraTextarea = question.querySelector(".extra-textarea");
 
-      const submission = {
-        question_1: answers[1] || null,
-        question_2: answers[2] || null,
-        question_3: answers[3] || null,
-        question_4: answers[4] || null,
-        question_5: answers[5] || null,
-        question_6: answers[6] || null,
-        question_7: answers[7] || null,
-        question_8: answers[8] || null,
-        question_9: answers[9] || null,
-        question_10: answers[10] || null,
-        question_11: answers[11] || null,
-        question_12: answers[12] || null
+      const oldData = getAnswerData(number);
+
+      answers[number] = {
+        answer: selectedOption
+          ? selectedOption.dataset.value
+          : primaryTextarea
+            ? primaryTextarea.value.trim()
+            : oldData.answer,
+        extra: extraTextarea
+          ? extraTextarea.value.trim()
+          : oldData.extra
       };
+    });
 
-      try {
-        const { error } = await supabaseClient
-          .from("birthday_answers")
-          .insert([submission]);
+    saveAnswers();
 
-        if (error) {
-          throw error;
-        }
+    const formatAnswer = number => {
+      const data = getAnswerData(String(number));
 
-        localStorage.removeItem("birthdayQuizAnswers");
+      if (data.answer && data.extra) {
+        return `${data.answer} | Additional: ${data.extra}`;
+      }
 
-        document.getElementById("quizContent").classList.add("hidden");
-        document.getElementById("progressContainer").style.display = "none";
-        document.getElementById("success").classList.add("active");
-      } catch (error) {
-        console.error("Supabase submission error:", error);
+      return data.answer || null;
+    };
 
-        alert(
-          "Something went wrong while saving your answers. Please try again. ❤️"
-        );
+    const submission = {
+      question_1: formatAnswer(1),
+      question_2: formatAnswer(2),
+      question_3: formatAnswer(3),
+      question_4: formatAnswer(4),
+      question_5: formatAnswer(5),
+      question_6: formatAnswer(6),
+      question_7: formatAnswer(7),
+      question_8: formatAnswer(8),
+      question_9: formatAnswer(9),
+      question_10: formatAnswer(10)
+    };
 
-        submitButton.disabled = false;
-        submitButton.textContent = "Submit my answers 💌";
+    const submitButton = document.querySelector(
+      '.question[data-question="10"] .primary-btn'
+    );
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Saving your answers... 💌";
+
+    try {
+      const { error } = await supabaseClient
+        .from("birthday_answers")
+        .insert([submission]);
+
+      if (error) throw error;
+
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(PROGRESS_KEY);
+
+      document.getElementById("quizContent").classList.add("hidden");
+      document.getElementById("progressContainer").style.display = "none";
+      document.getElementById("success").classList.add("active");
+
+    } catch (error) {
+      console.error("Supabase submission error:", error);
+
+      alert(
+        "Something went wrong while saving your answers. Please try again. ❤️"
+      );
+
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit my answers 💌";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const progressInfo = document.querySelector(".progress-info");
+
+    if (progressInfo) {
+      const saveIndicator = document.createElement("span");
+
+      saveIndicator.id = "saveIndicator";
+      saveIndicator.textContent = "Saved ✓";
+      saveIndicator.style.opacity = "0";
+      saveIndicator.style.transition = "opacity .3s ease";
+      saveIndicator.style.marginLeft = "10px";
+      saveIndicator.style.color = "#d66f95";
+      saveIndicator.style.fontWeight = "600";
+
+      progressInfo.appendChild(saveIndicator);
+    }
+
+    const hasSavedQuiz = loadSavedQuiz();
+
+    restoreAnswers();
+    setupTextareaAutosave();
+
+    if (
+      hasSavedQuiz &&
+      currentQuestion >= 1 &&
+      currentQuestion <= totalQuestions
+    ) {
+      const startButton = document.querySelector("#intro .primary-btn");
+
+      if (startButton) {
+        startButton.textContent = "Continue where I left off 💌";
+      }
+
+      const note = document.querySelector("#intro .small-note");
+
+      if (note) {
+        note.textContent =
+          `Your previous answers are saved. You can continue from Question ${currentQuestion}. ✨`;
       }
     }
+  });
 
-    function saveAnswers() {
-      localStorage.setItem(
-        "birthdayQuizAnswers",
-        JSON.stringify(answers)
-      );
-    }
+  window.addEventListener("beforeunload", saveAnswers);
+</script>
 
-    window.addEventListener("beforeunload", saveAnswers);
-
-  </script>
 
 </body>
 </html>

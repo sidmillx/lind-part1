@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lindelwe</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.8), transparent 25%),
+        linear-gradient(135deg, #ffe8f0, #f5e8ff, #e8f0ff);
+      color: #2d2430;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 20px;
+      opacity: .25;
+      animation: float 7s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart:nth-child(1) {
+      left: 8%;
+      top: 15%;
+      animation-delay: 0s;
+    }
+
+    .heart:nth-child(2) {
+      right: 10%;
+      top: 25%;
+      animation-delay: 2s;
+    }
+
+    .heart:nth-child(3) {
+      left: 15%;
+      bottom: 15%;
+      animation-delay: 4s;
+    }
+
+    .heart:nth-child(4) {
+      right: 20%;
+      bottom: 10%;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-25px) rotate(10deg);
+      }
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 25px 70px rgba(100, 60, 100, .16);
+    }
+
+    .progress-container {
+      display: none;
+      margin-bottom: 28px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #8d7788;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 7px;
+      background: #f1e5ed;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #e8789b, #9d7bea);
+      border-radius: inherit;
+      transition: width .4s ease;
+    }
+
+    .screen {
+      display: none;
+      animation: fadeIn .4s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .emoji {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 44px);
+      line-height: 1.1;
+      margin-bottom: 15px;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      font-size: 28px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #786975;
+      line-height: 1.6;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .small-note {
+      color: #9b8a96;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    .primary-btn {
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #e9799b, #9b7bea);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(170, 110, 160, .25);
+      transition: .2s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(170, 110, 160, .32);
+    }
+
+    .secondary-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      background: #f5edf3;
+      color: #695866;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .options {
+      display: grid;
+      gap: 11px;
+      margin: 24px 0;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      padding: 15px 17px;
+      background: rgba(255,255,255,.8);
+      border: 2px solid #eee2eb;
+      border-radius: 15px;
+      color: #443640;
+      font-size: 15px;
+      transition: .18s ease;
+    }
+
+    .option:hover {
+      border-color: #df9ab2;
+      transform: translateY(-1px);
+    }
+
+    .option.selected {
+      border-color: #d66f95;
+      background: #fff0f5;
+      box-shadow: 0 5px 15px rgba(210, 100, 145, .12);
+    }
+
+    .option .option-emoji {
+      margin-right: 8px;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      border: 2px solid #eee2eb;
+      background: rgba(255,255,255,.8);
+      border-radius: 15px;
+      padding: 16px;
+      font: inherit;
+      outline: none;
+      color: #443640;
+      resize: vertical;
+    }
+
+    textarea {
+      min-height: 130px;
+    }
+
+    textarea:focus,
+    input:focus {
+      border-color: #d982a1;
+    }
+
+    .navigation {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .navigation button {
+      flex: 1;
+    }
+
+    .final-heart {
+      font-size: 70px;
+      animation: heartbeat 1.3s infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    .summary-box {
+      background: #fff4f8;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 20px 0;
+      color: #725968;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+    }
+
+    .success-message.active {
+      display: block;
+      animation: fadeIn .5s ease;
+    }
+
+    .quiz-content.hidden {
+      display: none;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 10px;
+      }
+
+      .app {
+        padding: 25px 19px;
+        border-radius: 23px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .option {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="heart">♡</div>
+  <div class="heart">♥</div>
+  <div class="heart">♡</div>
+  <div class="heart">♥</div>
+
+  <main class="app">
+
+    <div id="quizContent">
+
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-info">
+          <span id="questionNumber">Question 1 of 12</span>
+          <span id="progressPercent">8%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+
+      <section class="screen active" id="intro">
+
+        <div class="emoji">💌</div>
+
+        <h1>I just want to know a bit about Lindelwe...</h1>
+
+        <p class="subtitle">
+          I have a very important mission:
+          figuring out what rocks your world.
+          <br><br>
+          So I have a few completely innocent questions for you.
+        </p>
+
+        <button class="primary-btn" onclick="startQuiz()">
+          Okay, let's do this ✨
+        </button>
+
+        <p class="small-note">
+          There are no wrong answers. Obviously. 😌
+        </p>
+
+      </section>
+
+      <section class="screen question" data-question="1">
+
+        <h2>What makes you feel cared for the most...</h2>
+
+
+        <div class="options">
+
+          <button class="option" data-value="Words, compliments"
+                  onclick="selectOption(this)">
+
+            Words, compliments
+          </button>
+
+          <button class="option" data-value="Gifts"
+                  onclick="selectOption(this)">
+            Gifts
+          </button>
+
+          <button class="option" data-value="Quality time"
+                  onclick="selectOption(this)">
+            Quality time
+          </button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">
+            ← Back
+          </button>
+
+          <button class="primary-btn" onclick="nextQuestion()">
+            Next →
+          </button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="2">
+
+        <h2>What kind of jewelry do you love most? 💎</h2>
+
+        <p class="subtitle">
+          Pick your ideal.
+        </p>
+
+        <div class="options">
+
+          <button class="option" data-value="Necklaces"
+                  onclick="selectOption(this)">
+            Necklaces
+          </button>
+
+          <button class="option" data-value="Bracelets"
+                  onclick="selectOption(this)">
+            Bracelets
+          </button>
+
+          <button class="option" data-value="Rings"
+                  onclick="selectOption(this)">
+            Rings
+          </button>
+
+          <button class="option" data-value="Earrings"
+                  onclick="selectOption(this)">
+            Earrings
+          </button>
+
+          <button class="option" data-value="Something more specific"
+                  onclick="selectOption(this)">
+            Something more specific
+          </button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="3">
+
+        <h2>Do you like handwritten notes? 💌</h2>
+
+        <div class="options">
+
+          <button class="option" data-value="I love them."
+                  onclick="selectOption(this)"> I love them.</button>
+
+          <button class="option" data-value="Depends..."
+                  onclick="selectOption(this)"> Depends...</button>
+
+          <button class="option" data-value="No"
+                  onclick="selectOption(this)">No</button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="4">
+
+        <h2>When you’re having a bad day, how do you want someone who cares about you to treat you? 🫶</h2>
+
+
+        <div class="options">
+
+          <button class="option" data-value="Comfort"
+                  onclick="selectOption(this)">Comfort</button>
+
+          <button class="option" data-value="Advice"
+                  onclick="selectOption(this)">Advice</button>
+
+          <button class="option" data-value="Advice"
+                  onclick="selectOption(this)">Space</button>
+
+          <button class="option" data-value="Have someone there"
+                  onclick="selectOption(this)">Have someone there</button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="5">
+
+        <h2>Which color feels the most "you"? 🎨</h2>
+
+                <div class="options">
+
+          <button class="option" data-value="Black"
+                  onclick="selectOption(this)">🖤 Black</button>
+
+          <button class="option" data-value="White"
+                  onclick="selectOption(this)">🤍 White</button>
+
+          <button class="option" data-value="Pink"
+                  onclick="selectOption(this)">🩷 Pink</button>
+
+          <button class="option" data-value="Blue"
+                  onclick="selectOption(this)">💙 Blue</button>
+
+          <button class="option" data-value="Purple"
+                  onclick="selectOption(this)">💜 Purple</button>
+          <button class="option" data-value="Purple"
+          onclick="selectOption(this)">None of the above</button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="6">
+
+        <h2>What’s something you’ve always wanted someone to do for you, but nobody has really thought of doing? ✨</h2>
+
+        <textarea id="q6" placeholder="Tell me something you've always wanted someone to do for you..."></textarea>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="7">
+
+        <h2>What kind of gift makes you happiest? 🎁</h2>
+
+        <p class="subtitle">
+          Be honest.
+        </p>
+
+        <div class="options">
+
+          <button class="option" data-value="Jewelry"
+                  onclick="selectOption(this)">💍 Jewelry / accessories</button>
+
+          <button class="option" data-value="Fashion"
+                  onclick="selectOption(this)">👗 Clothes / fashion</button>
+
+          <button class="option" data-value="Cute"
+                  onclick="selectOption(this)">🧸 Something cute</button>
+
+          <button class="option" data-value="Books"
+                  onclick="selectOption(this)">📚 Books</button>
+
+          <button class="option" data-value="Beauty"
+                  onclick="selectOption(this)">💄 Beauty / self-care</button>
+
+          <button class="option" data-value="Sentimental"
+                  onclick="selectOption(this)">💌 Something sentimental</button>
+
+          <button class="option" data-value="Surprise"
+                  onclick="selectOption(this)">🎁 Surprise me!</button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="8">
+
+        <h2>What are some things you absolutely don’t like or that can easily hurt your feelings? 💭</h2>
+        <textarea
+          id="q8"
+          placeholder="Tell me what you don't like or what can easily hurt your feelings..."
+        ></textarea>
+
+<div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="9">
+
+        <h2>If someone wanted to take really good care of you, what would you want them to know about you? </h2>
+
+
+        <textarea id="q9" placeholder="Tell me what you'd want me to know about you so I can take good care of you..."></textarea>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="10">
+
+        <h2>Anything I do that you'd like me to do more of or less of? (If Any)</h2>
+
+        <textarea id="q10" placeholder="Tell me anything you'd like me to do more of, if any..."></textarea>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="11">
+
+        <h2>How much do you like surprises? 🎲</h2>
+
+        <div class="options">
+
+          <button class="option" data-value="10/10"
+                  onclick="selectOption(this)">🥹 10/10 — SURPRISE ME</button>
+
+          <button class="option" data-value="8/10"
+                  onclick="selectOption(this)">😍 8/10</button>
+
+          <button class="option" data-value="5/10"
+                  onclick="selectOption(this)">🙂 5/10</button>
+
+          <button class="option" data-value="2/10"
+                  onclick="selectOption(this)">😅 2/10 — I need hints</button>
+
+          <button class="option" data-value="No surprises"
+                  onclick="selectOption(this)">🚫 Please don't surprise me</button>
+
+        </div>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+          <button class="primary-btn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </section>
+
+      <section class="screen question" data-question="12">
+
+        <h2>What's something you REALLY don't like? Anything 🚫</h2>
+
+        <textarea
+          id="q12"
+          placeholder="Please save me from accidentally choosing the wrong thing 😂"
+        ></textarea>
+
+        <div class="navigation">
+          <button class="secondary-btn" onclick="previousQuestion()">← Back</button>
+
+          <button class="primary-btn" onclick="finishQuiz()">
+            Submit my answers 💌
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+    <section class="success-message" id="success">
+
+      <div class="final-heart">💗</div>
+
+      <h1>Perfect. Thank you! ✨</h1>
+
+      <p class="subtitle">
+        Your answers have been safely recorded.
+        <br><br>
+        Thank you for your time, I just want to treat you better :)
+      </p>
+
+      <div class="summary-box">
+        <strong>Mission status:</strong><br>
+        Part one finished. Stay tuned 🕵️‍♂️
+      </div>
+
+      <p class="small-note">
+        You may now continue with your day as if nothing happened. 😂
+      </p>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://ireszkilzuwybtbitdty.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_7q-p3xgS5-UEr1Z-gM8ayw_oQGikmel";
+
+    let supabaseClient = null;
+
+    if (SUPABASE_URL && SUPABASE_PUBLISHABLE_KEY && window.supabase) {
+      supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+    }
+
+    const totalQuestions = 12;
+    let currentQuestion = 0;
+    const answers = {};
+
+    function startQuiz() {
+      document.getElementById("intro").classList.remove("active");
+      document.querySelector('.question[data-question="1"]').classList.add("active");
+      document.getElementById("progressContainer").style.display = "block";
+
+      currentQuestion = 1;
+      updateProgress();
+    }
+
+    function selectOption(button) {
+      const question = button.closest(".question");
+      const questionNumber = question.dataset.question;
+
+      question.querySelectorAll(".option").forEach(option => {
+        option.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+      answers[questionNumber] = button.dataset.value;
+    }
+
+    function validateCurrentQuestion() {
+      const current = document.querySelector(
+        `.question[data-question="${currentQuestion}"]`
+      );
+
+      if (!current) return false;
+
+      const optionContainer = current.querySelector(".options");
+
+      if (optionContainer) {
+        if (!answers[currentQuestion]) {
+          alert("Pick one first 😌");
+          return false;
+        }
+
+        return true;
+      }
+
+      const textarea = current.querySelector("textarea");
+
+      if (textarea) {
+        const answer = textarea.value.trim();
+
+        if (!answer) {
+          alert("Tell me something! 👀");
+          textarea.focus();
+          return false;
+        }
+
+        answers[currentQuestion] = answer;
+      }
+
+      return true;
+    }
+
+    function nextQuestion() {
+      if (!validateCurrentQuestion()) return;
+
+      const current = document.querySelector(
+        `.question[data-question="${currentQuestion}"]`
+      );
+
+      current.classList.remove("active");
+      currentQuestion++;
+
+      const next = document.querySelector(
+        `.question[data-question="${currentQuestion}"]`
+      );
+
+      if (next) {
+        next.classList.add("active");
+      }
+
+      updateProgress();
+    }
+
+    function previousQuestion() {
+      const current = document.querySelector(
+        `.question[data-question="${currentQuestion}"]`
+      );
+
+      if (current) {
+        current.classList.remove("active");
+      }
+
+      currentQuestion--;
+
+      if (currentQuestion <= 0) {
+        currentQuestion = 0;
+        document.getElementById("intro").classList.add("active");
+        document.getElementById("progressContainer").style.display = "none";
+        return;
+      }
+
+      const previous = document.querySelector(
+        `.question[data-question="${currentQuestion}"]`
+      );
+
+      if (previous) {
+        previous.classList.add("active");
+
+        const textarea = previous.querySelector("textarea");
+        if (textarea && answers[currentQuestion]) {
+          textarea.value = answers[currentQuestion];
+        }
+
+        const selectedValue = answers[currentQuestion];
+        if (selectedValue) {
+          previous.querySelectorAll(".option").forEach(option => {
+            option.classList.toggle(
+              "selected",
+              option.dataset.value === selectedValue
+            );
+          });
+        }
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      if (currentQuestion === 0) return;
+
+      const percentage = Math.round(
+        (currentQuestion / totalQuestions) * 100
+      );
+
+      document.getElementById("progress").style.width = percentage + "%";
+      document.getElementById("progressPercent").textContent = percentage + "%";
+      document.getElementById("questionNumber").textContent =
+        `Question ${currentQuestion} of ${totalQuestions}`;
+    }
+
+    async function finishQuiz() {
+      if (!validateCurrentQuestion()) return;
+
+      if (!supabaseClient) {
+        alert(
+          "Supabase is not configured yet. Add your Supabase URL and publishable key to the HTML file, then try again. ❤️"
+        );
+        return;
+      }
+
+      const submitButton = document.querySelector(
+        '.question[data-question="12"] .primary-btn'
+      );
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Saving your answers... 💌";
+
+      const submission = {
+        question_1: answers[1] || null,
+        question_2: answers[2] || null,
+        question_3: answers[3] || null,
+        question_4: answers[4] || null,
+        question_5: answers[5] || null,
+        question_6: answers[6] || null,
+        question_7: answers[7] || null,
+        question_8: answers[8] || null,
+        question_9: answers[9] || null,
+        question_10: answers[10] || null,
+        question_11: answers[11] || null,
+        question_12: answers[12] || null
+      };
+
+      try {
+        const { error } = await supabaseClient
+          .from("birthday_answers")
+          .insert([submission]);
+
+        if (error) {
+          throw error;
+        }
+
+        localStorage.removeItem("birthdayQuizAnswers");
+
+        document.getElementById("quizContent").classList.add("hidden");
+        document.getElementById("progressContainer").style.display = "none";
+        document.getElementById("success").classList.add("active");
+      } catch (error) {
+        console.error("Supabase submission error:", error);
+
+        alert(
+          "Something went wrong while saving your answers. Please try again. ❤️"
+        );
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit my answers 💌";
+      }
+    }
+
+    function saveAnswers() {
+      localStorage.setItem(
+        "birthdayQuizAnswers",
+        JSON.stringify(answers)
+      );
+    }
+
+    window.addEventListener("beforeunload", saveAnswers);
+
+  </script>
+
+</body>
+</html>
